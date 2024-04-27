@@ -11,6 +11,11 @@
 | cmp ax,bx   | Vergleicht Inhalt aus AX mit BX        |
 | je m        | Springt zu M, wenn gleich              |
 | jmp m       | Springt zu M                           |
+| shr ax,bx   | Shift Right AX um (Wert aus BX)-Bits   |
+| shl ax,bx   | Shift Left AX um (Wert aus BX)-Bits    |
+| push ax     | Setzt AS-Register auf den Stack        |
+| pop ax      | Restauriert AX                         |
+| and ax,bx   | Logisches UND von AX und BX            |
 
 | Interrupts             | Description                        |
 |------------------------|------------------------------------|
@@ -25,3 +30,4 @@
 | add dl,30                   | Maskiert die Ziffer in DL                                               |
 | sub dl,30                   | Demaskiert die Ziffer in DL                                             |
 | string db "Hello",10,13,"$" | Speichert String ab, 10: Zeilenumbruch, 13: Leere Zeile, $: String Ende |
+| and al,0fh                  | Wert logisch nullen                                                     |
