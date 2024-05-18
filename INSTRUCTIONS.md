@@ -1,21 +1,40 @@
 # Instruction Set
 
-| Instruction | Description                            |
-|-------------|----------------------------------------|
-| mov ax,bx   | Verschiebt BX nach AX                  |
-| add ax,bx   | Addiert AX und BX nach AX              |
-| sub ax,bx   | Subtrahiert AX und BX nach AX          |
-| daa         | Dezimale Anpassung nach Addition in AX |
-| inc ax      | Inkrementiert den Wert in AX           |
-| dec ax      | Dekrementiert den Wert in AX           |
-| cmp ax,bx   | Vergleicht Inhalt aus AX mit BX        |
-| je m        | Springt zu M, wenn gleich              |
-| jmp m       | Springt zu M                           |
-| shr ax,bx   | Shift Right AX um (Wert aus BX)-Bits   |
-| shl ax,bx   | Shift Left AX um (Wert aus BX)-Bits    |
-| push ax     | Setzt AS-Register auf den Stack        |
-| pop ax      | Restauriert AX                         |
-| and ax,bx   | Logisches UND von AX und BX            |
+| Register | Description                                                 |
+|----------|-------------------------------------------------------------|
+| AX       | 16-Bit-Register; Multiplikation, Division, Datenübertragung |
+| BX       | 16-Bit-Register; Basisregister                              |
+| CX       | 16-Bit-Register; Zählregister                               |
+| DX       | 16-Bit-Register; Restwert bei Divisionen                    |
+| SI / DI  | Zeigeroperationen                                           |
+| BP       | Basisadresse für Adressierung                               |
+| SP       | Oberster Speicherort des Stacks                             |
+| CS       | Segment, das den auszuführenden Code enthählt               |
+| DS       | Segment, das die Daten enthält                              |
+| SS       | Segment, das den Stack enthält                              |
+| ES       | Zustätzliches Datensegementregister                         |
+| Flags    | Verschiedene Statusbits                                     |
+| IP       | Pointer auf Adresse mit nächster Anweisung                  |
+
+| Instruction | Description                                                           |
+|-------------|-----------------------------------------------------------------------|
+| mov ax,bx   | Verschiebt BX nach AX                                                 |
+| add ax,bx   | Addiert AX und BX nach AX                                             |
+| sub ax,bx   | Subtrahiert AX und BX nach AX                                         |
+| daa         | Dezimale Anpassung nach Addition in AX                                |
+| inc ax      | Inkrementiert den Wert in AX                                          |
+| dec ax      | Dekrementiert den Wert in AX                                          |
+| cmp ax,bx   | Vergleicht Inhalt aus AX mit BX                                       |
+| je m        | Springt zu M, wenn gleich                                             |
+| jmp m       | Springt zu M                                                          |
+| shr ax,bx   | Shift Right AX um (Wert aus BX)-Bits                                  |
+| shl ax,bx   | Shift Left AX um (Wert aus BX)-Bits                                   |
+| push ax     | Setzt AS-Register auf den Stack !nur mit 16-Bit!                      |
+| pop ax      | Restauriert AX !nur mit 16-Bit!                                       |
+| and ax,bx   | Logisches UND von AX und BX                                           |
+| xchg al,ah  | Tauscht Werte                                                         |
+| ror ax,bl   | Schiebt angegebene Zahl BL Bits nach rechts und fügt links wieder ein |
+| rol ax,bl   | Schiebt angegebene Zahl BL Bits nach links und fügt rechts wieder ein |
 
 | Interrupts             | Description                        |
 |------------------------|------------------------------------|
@@ -25,9 +44,14 @@
 | mov ah,9<br/>int 21h   | Stringausgabe aus DX               |
 | mov ah,4ch<br/>int 21h | Zurück zu DOS                      |
 
-| Magic                       | Description                                                             |
-|-----------------------------|-------------------------------------------------------------------------|
-| add dl,30                   | Maskiert die Ziffer in DL                                               |
-| sub dl,30                   | Demaskiert die Ziffer in DL                                             |
-| string db "Hello",10,13,"$" | Speichert String ab, 10: Zeilenumbruch, 13: Leere Zeile, $: String Ende |
-| and al,0fh                  | Wert logisch nullen                                                     |
+| Magic                        | Description                                                             |
+|------------------------------|-------------------------------------------------------------------------|
+| add dl,30h                   | Maskiert die Ziffer in DL als ASCII; 30 -> 'A'                          |
+| sub dl,30h                   | Demaskiert die Ziffer in DL                                             |
+| string db "Hello",10,13,"$"  | Speichert String ab, 10: Zeilenumbruch, 13: Leere Zeile, $: String Ende |
+| variable db 12               | Definiert eine 8-Bit-Zahl mit dem Wert 12                               |
+| variable dw 1234h            | Definiert eine 16-Bit-Zahl mit dem Wert 1234h                           |
+| variable dd 12345678h        | Definiert eine 32-Bit-Zahl                                              |
+| variable dq 123456789abcdefh | Definiert eine 64-Bit-Zahl                                              |
+| and al,0fh                   | Wert logisch nullen                                                     |
+| mov ax, 0fd2ch               | 0x MUSS als Präfix, da sonst nicht als Zahl erkannt                     |
