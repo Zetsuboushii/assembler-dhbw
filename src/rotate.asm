@@ -2,17 +2,14 @@ org 100h
 bits 16
 
 section .code
-    mov ax, 4fd3h
-    shr ax, 3
+    mov dx, 0x4fd3
+    shr dl, 3
 
-    mov ax, 3bcch
-    ror ax, 5
+    mov cx, 0x3bcc
+    ror ch, 5
 
-    mov ax, 7720h
+    mov ax, 0x7720
     rol ax, 7
 
-    mov ax, 0fd2ch
-    shl ax, 3
-
-    mov ah, 4ch
-    int 21h
+    mov ax, 0xfd2c
+    shl ah, 3

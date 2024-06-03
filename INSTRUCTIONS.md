@@ -5,11 +5,11 @@
 | AX       | 16-Bit-Register; Multiplikation, Division, Datenübertragung |
 | BX       | 16-Bit-Register; Basisregister                              |
 | CX       | 16-Bit-Register; Zählregister                               |
-| DX       | 16-Bit-Register; Restwert bei Divisionen                    |
+| DX       | 16-Bit-Register; Restwert bei Divisionen, Outputwerte       |
 | SI / DI  | Zeigeroperationen                                           |
 | BP       | Basisadresse für Adressierung                               |
 | SP       | Oberster Speicherort des Stacks                             |
-| CS       | Segment, das den auszuführenden Code enthählt               |
+| CS       | Segment, das den auszuführenden Code enthält                |
 | DS       | Segment, das die Daten enthält                              |
 | SS       | Segment, das den Stack enthält                              |
 | ES       | Zustätzliches Datensegementregister                         |
@@ -29,12 +29,20 @@
 | jmp m       | Springt zu M                                                          |
 | shr ax,bx   | Shift Right AX um (Wert aus BX)-Bits                                  |
 | shl ax,bx   | Shift Left AX um (Wert aus BX)-Bits                                   |
-| push ax     | Setzt AS-Register auf den Stack !nur mit 16-Bit!                      |
+| push ax     | Setzt AX-Register auf den Stack !nur mit 16-Bit!                      |
 | pop ax      | Restauriert AX !nur mit 16-Bit!                                       |
+| pushall     | Legt alle Hauptregister (außer CX) auf den Stack                      |
+| popall      | Holt alle Hauptregister (außer CX) auf den Stack                      |
 | and ax,bx   | Logisches UND von AX und BX                                           |
 | xchg al,ah  | Tauscht Werte                                                         |
 | ror ax,bl   | Schiebt angegebene Zahl BL Bits nach rechts und fügt links wieder ein |
 | rol ax,bl   | Schiebt angegebene Zahl BL Bits nach links und fügt rechts wieder ein |
+| rcl ax,bl   | Rotate Left, unter Einbeziehung der Carry-Flag                        |
+| pushf       | Legt das Statusregister auf den Stack                                 |
+| popf        | Holt das Statusregister vom Stack                                     |
+| jc m        | Springt zu M, wenn Carry Flag gesetzt ist                             |
+| call s      | Ruft Subroutine S auf                                                 |
+| ret         | Kehrt zum call-Aufruf zurück                                          |
 
 | Interrupts             | Description                        |
 |------------------------|------------------------------------|
