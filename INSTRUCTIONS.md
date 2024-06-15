@@ -41,8 +41,6 @@
 | shl ax,bx   | Shift Left AX um (Wert aus BX)-Bits                                   |
 | push ax     | Setzt AX-Register auf den Stack !nur mit 16-Bit!                      |
 | pop ax      | Restauriert AX !nur mit 16-Bit!                                       |
-| pushall     | Legt alle Hauptregister (außer CX) auf den Stack                      |
-| popall      | Holt alle Hauptregister (außer CX) auf den Stack                      |
 | and ax,bx   | Logisches UND von AX und BX                                           |
 | xchg al,ah  | Tauscht Werte                                                         |
 | ror ax,bl   | Schiebt angegebene Zahl BL Bits nach rechts und fügt links wieder ein |
