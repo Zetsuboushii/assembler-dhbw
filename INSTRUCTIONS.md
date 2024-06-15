@@ -17,7 +17,7 @@
 
 | Flags            | Description                                                 |
 |------------------|-------------------------------------------------------------|
-| Carry Flag (CF)  | (NoCarry) / (CarryYey)                                      |
+| Carry Flag (CF)  | (NoCarry) / (CarryYes)                                      |
 | Parity Flag (PF) | (ParityEven) / (ParityOdd)                                  |
 | Zero Flag (ZF)   | Wenn Subtraktion oder Vergleich null ergibt (ZeRo/NotZero)  |
 | Sign Flag (SF)   | Wenn Ergebnis negativ ist (highest bit = 1) (PLus/NeGative) |
