@@ -13,8 +13,14 @@
 | DS       | Segment, das die Daten enthält                              |
 | SS       | Segment, das den Stack enthält                              |
 | ES       | Zustätzliches Datensegementregister                         |
-| Flags    | Verschiedene Statusbits                                     |
 | IP       | Pointer auf Adresse mit nächster Anweisung                  |
+
+| Flags            | Description                                                 |
+|------------------|-------------------------------------------------------------|
+| Carry Flag (CF)  | (NoCarry) / (CarryYey)                                      |
+| Parity Flag (PF) | (ParityEven) / (ParityOdd)                                  |
+| Zero Flag (ZF)   | Wenn Subtraktion oder Vergleich null ergibt (ZeRo/NotZero)  |
+| Sign Flag (SF)   | Wenn Ergebnis negativ ist (highest bit = 1) (PLus/NeGative) |
 
 | Instruction | Description                                                           |
 |-------------|-----------------------------------------------------------------------|
@@ -25,8 +31,12 @@
 | inc ax      | Inkrementiert den Wert in AX                                          |
 | dec ax      | Dekrementiert den Wert in AX                                          |
 | cmp ax,bx   | Vergleicht Inhalt aus AX mit BX                                       |
-| je m        | Springt zu M, wenn gleich                                             |
 | jmp m       | Springt zu M                                                          |
+| jz m        | Sprint zu M, wenn 0                                                   |
+| je m        | Springt zu M, wenn gleich                                             |
+| jl m        | Springt zu M, wenn kleiner                                            |
+| jle m       | Springt zu M, wenn kleiner oder gleich                                |
+| jc m        | Springt zu M, wenn Carry Flag gesetzt ist                             |
 | shr ax,bx   | Shift Right AX um (Wert aus BX)-Bits                                  |
 | shl ax,bx   | Shift Left AX um (Wert aus BX)-Bits                                   |
 | push ax     | Setzt AX-Register auf den Stack !nur mit 16-Bit!                      |
@@ -40,7 +50,6 @@
 | rcl ax,bl   | Rotate Left, unter Einbeziehung der Carry-Flag                        |
 | pushf       | Legt das Statusregister auf den Stack                                 |
 | popf        | Holt das Statusregister vom Stack                                     |
-| jc m        | Springt zu M, wenn Carry Flag gesetzt ist                             |
 | call s      | Ruft Subroutine S auf                                                 |
 | ret         | Kehrt zum call-Aufruf zurück                                          |
 
@@ -52,14 +61,17 @@
 | mov ah,9<br/>int 21h   | Stringausgabe aus DX               |
 | mov ah,4ch<br/>int 21h | Zurück zu DOS                      |
 
-| Magic                        | Description                                                             |
-|------------------------------|-------------------------------------------------------------------------|
-| add dl,30h                   | Maskiert die Ziffer in DL als ASCII; 30 -> 'A'                          |
-| sub dl,30h                   | Demaskiert die Ziffer in DL                                             |
-| string db "Hello",10,13,"$"  | Speichert String ab, 10: Zeilenumbruch, 13: Leere Zeile, $: String Ende |
-| variable db 12               | Definiert eine 8-Bit-Zahl mit dem Wert 12                               |
-| variable dw 1234h            | Definiert eine 16-Bit-Zahl mit dem Wert 1234h                           |
-| variable dd 12345678h        | Definiert eine 32-Bit-Zahl                                              |
-| variable dq 123456789abcdefh | Definiert eine 64-Bit-Zahl                                              |
-| and al,0fh                   | Wert logisch nullen                                                     |
-| mov ax, 0fd2ch               | 0x MUSS als Präfix, da sonst nicht als Zahl erkannt                     |
+| Magic                        | Description                                                                        |
+|------------------------------|------------------------------------------------------------------------------------|
+| add dl,30h                   | Maskiert die Ziffer in DL als ASCII; 30 -> 'A'                                     |
+| sub dl,30h                   | Demaskiert die Ziffer in DL                                                        |
+| string db "Hello",10,13,"$"  | Speichert String ab, 10: Zeilenumbruch, 13: Leere Zeile, $: String Ende            |
+| variable db 12               | Definiert eine 8-Bit-Zahl mit dem Wert 12                                          |
+| variable dw 1234h            | Definiert eine 16-Bit-Zahl mit dem Wert 1234h                                      |
+| variable dd 12345678h        | Definiert eine 32-Bit-Zahl                                                         |
+| variable dq 123456789abcdefh | Definiert eine 64-Bit-Zahl                                                         |
+| and al,0fh                   | Wert logisch nullen                                                                |
+| mov ax, 0fd2ch               | 0x MUSS als Präfix, da sonst nicht als Zahl erkannt                                |
+| Stackstruktur                | Die oberste Adresse des Stacks ist mit 00 belegt                                   |
+| Stackwachstum                | Stacks wachsen nach unten. Der untere Registerteil kommt zuerst auf Stack          |
+| Stackpop                     | Stacks werden nach LIFO gepopt; unabhängig vom Register; Registerhälften getauscht |
